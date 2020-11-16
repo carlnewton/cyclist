@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Cyclist</title>
+    <style>
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            background: linear-gradient(#ddd, #eee);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+            color: #444;
+            font-size: 50pt;
+        }
+    </style>
+</head>
+<body>
+    <p></p>
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var list = urlParams.get('l').split('.');
+        var offset = urlParams.get('o');
+        if (!offset) {
+            offset = 0;
+        }
+        var cycleDate = new Date(1590969600000);
+        var listIndex = 0;
+        while (cycleDate < Date.now() - (offset * 86400000)) {
+            cycleDate.setDate(cycleDate.getDate() + 7);
+            listIndex++;
+            if (listIndex === list.length) {
+                listIndex = 0;
+            }
+        }
+
+        document.querySelector('p').appendChild(document.createTextNode(list[listIndex]))
+    </script>
+</body>
+</html>
