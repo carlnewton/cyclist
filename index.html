@@ -29,17 +29,23 @@
         if (!offset) {
             offset = 0;
         }
+
+        var interval = 7;
+
+        if (urlParams.get('i')) {
+            interval = parseInt(urlParams.get('i'));
+        }
         var cycleDate = new Date(1590969600000);
         var listIndex = 0;
         while (cycleDate < Date.now() - (offset * 86400000)) {
-            cycleDate.setDate(cycleDate.getDate() + 7);
+            cycleDate.setDate(cycleDate.getDate() + interval);
             listIndex++;
             if (listIndex === list.length) {
                 listIndex = 0;
             }
         }
 
-        document.querySelector('p').appendChild(document.createTextNode(list[listIndex]))
+        document.querySelector('p').appendChild(document.createTextNode(list[listIndex]));
     </script>
 </body>
 </html>
